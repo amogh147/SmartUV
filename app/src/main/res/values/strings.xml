@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Smart UV</string>
+    <string name="google_app_id">362630710337</string>
+
+    <string name="tab1_title">Current UV</string>
+    <string name="tab2_title">UV Exposure</string>
+    <string name="tab3_title">Information</string>
+
+    <string name="noRisk">None</string>
+    <string name="lowRisk">Low</string>
+    <string name="moderateRisk">Moderate</string>
+    <string name="highRisk">High</string>
+    <string name="veryHighRisk">Very High</string>
+    <string name="extremeRisk">Extreme</string>
+
+    <string name="trackingToggle">Tracking</string>
+    <string name="timeTableTitle">Time</string>
+    <string name="uvIndexTableTitle">UV Index</string>
+    <string name="exposureTimeTableTitle">Exposure Time</string>
+
+    <string name="ioIndicator">Indoor/Outdoor State:</string>
+
+    <string name="notificationTitle">Smart UV</string>
+    <string name="notificationSubtitle"></string>
+
+    <string name="indoor">Indoor</string>
+    <string name="outdoor">Outdoor</string>
+
+    <string-array name="noRiskMsgs">
+        <item>You are safe!</item>
+    </string-array>
+
+    <string-array name="lowRiskMsgs">
+        <item>Wear sunglasses on bright days</item>
+        <item>Cover up and use sunscreen if you burn easily</item>
+    </string-array>
+
+    <string-array name="moderateRiskMsgs">
+        <item>Wear sunglasses on bright days</item>
+        <item>Cover up and use sunscreen if you go outside</item>
+        <item>Stay in shade when the sun is strong</item>
+    </string-array>
+
+    <string-array name="highRiskMsgs">
+        <item>Cover up, wear a hat an sunglasses, and use sunscreen</item>
+        <item>Reduce time in the sun</item>
+    </string-array>
+
+    <string-array name="veryHighRiskMsgs">
+        <item>Take extra precautions. Avoid the sun</item>
+        <item>Seek shade, cover up, wear a hat an sunglasses, and use sunscreen</item>
+    </string-array>
+
+    <string-array name="extremeRiskMsgs">
+        <item>Avoid sun exposure as most as you can</item>
+        <item>You must seek shade, cover up, wear a hat an sunglasses, and use sunscreen</item>
+    </string-array>
+
+</resources>
