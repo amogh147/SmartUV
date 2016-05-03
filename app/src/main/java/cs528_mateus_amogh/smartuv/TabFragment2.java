@@ -174,15 +174,9 @@ public class TabFragment2 extends Fragment {
                 uvView.setTextColor(getResources().getColor(HealthInfo.getRiskResource(risk).colorId));
 
                 exposureView.setText(DateTime.secondsToString(update.getExposureTime()));
-
-                //Log.v(TAG, update.getDateTime().toString() + " " +
-                        //update.getUvIndex() + " " +
-                        //update.getExposureTime());
             }
         }
     }
-
-    private boolean mOpenDatabase = false;
 
     private void updateSunExposureTime(){
         UVDayUpdate dayUpdate = MainService.getUvDayUpdate();
@@ -194,7 +188,6 @@ public class TabFragment2 extends Fragment {
             mUvDayUpdate = mDatabase.getUVDayUpdate(new DateTime(Calendar.getInstance()).getDateString());
             if(mUvDayUpdate!=null)
                 updateExposureTimeView(mUvDayUpdate.getDayUpdateOfInterest());
-            //mDatabase.close();
         }
     }
 

@@ -19,12 +19,7 @@ import cs528_mateus_amogh.smartuv.SensingModules.CityLocationModule;
 public class MainActivity extends AppCompatActivity {
 
     private final String TAG = "MAIN_ACT";
-    private Activity mInstance;
     private FragmentTabHost mTabHost;
-
-    public final static String ADDRESS_INTENT = "ADDRESS_INTENT";
-    public final static String ZIPCODE_EXTRA = "ZIPCODE_EXTRA";
-    public final static String CITY_EXTRA = "CITY_EXTRA";
 
     private CityLocationModule mCityLocationModule;
     private LocationListener mCityLocationListener = new LocationListener() {
