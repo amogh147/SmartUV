@@ -4,7 +4,7 @@
 
     <string name="tab1_title">Current UV</string>
     <string name="tab2_title">UV Exposure</string>
-    <string name="tab3_title">Information</string>
+    <string name="tab3_title">Info</string>
 
     <string name="noRisk">None</string>
     <string name="lowRisk">Low</string>
