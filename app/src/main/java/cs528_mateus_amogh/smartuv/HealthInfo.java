@@ -1,17 +1,15 @@
 package cs528_mateus_amogh.smartuv;
 
-import android.graphics.Color;
-import android.util.Pair;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by mateus on 4/16/2016.
+ * Store all information got from Health Organization Resources
+ * It includes interface resources id (color, images, messages), formulas and conventions
  */
 public class HealthInfo {
 
-    //Ids for the risk map
+    //This class store all interface resources indexed by Id
     public static class Resource{
         public Resource(int nameId, int colorId, int msgId, int msgImgId[]){
             this.nameId = nameId;
@@ -21,11 +19,11 @@ public class HealthInfo {
         }
         public int nameId;
         public int colorId;
-
         public int msgId;
         public int msgImgViewId[];
     }
 
+    //Static map (got from https://www.epa.gov/sites/production/files/documents/uviguide.pdf)
     private static final Map<Integer, Resource> resMap= new HashMap<Integer, Resource>();
     static {
         resMap.put(Risk.NONE, new Resource(R.string.noRisk,R.color.noRisk,R.array.noRiskMsgs,new int[]{}));
@@ -40,11 +38,13 @@ public class HealthInfo {
                 new int[]{R.id.shirtView,R.id.hatView,R.id.sunscreenView, R.id.sunglassView, R.id.houseView,R.id.alertView}));
     }
 
+    //Get the resources associated with the specified risk
     public static Resource getRiskResource(int risk){
         return resMap.get(risk);
     }
 
-
+    //Risk Levels along with the thresholds
+    //TODO: separate Risk Ids from Risk thresholds
     public final static class Risk{
         public static final int NONE = 0;
         public static final int LOW = 1;
@@ -54,11 +54,7 @@ public class HealthInfo {
         public static final int EXTREME = 11;
     }
 
-    public static String getProtectionMessage(int risk){
-        return null;
-    }
-
-    //in minutes
+    //Calculate the expected sunburn time for specific skinType and uvIndex
     public static double calcSunBurnTime(int skinType, int uvIndex){
         //source: http://www.himaya.com/solar/avoidsunburn.html
         if(uvIndex == 0)
@@ -69,8 +65,8 @@ public class HealthInfo {
             return (skinType - 1) * 100. / uvIndex;
     }
 
-
-
+    //Get the risk ID based on the uvIndex
+    //https://www.epa.gov/sites/production/files/documents/uviguide.pdf
     public static int getRisk(int uvIndex){
         if(uvIndex == Risk.NONE)
             return Risk.NONE;
@@ -85,21 +81,4 @@ public class HealthInfo {
         return Risk.EXTREME;
     }
 
-    public static int getRiskStrId(int risk){
-        return riskStringIdMap.get(risk).first;
-    }
-
-    public static int getRiskColorId(int risk){
-        return riskStringIdMap.get(risk).second;
-    }
-
-    private static final Map<Integer, Pair<Integer,Integer>> riskStringIdMap = new HashMap<Integer, Pair<Integer,Integer>>();
-    static {
-        riskStringIdMap.put(Risk.NONE, new Pair<Integer, Integer>(R.string.noRisk, R.color.noRisk));
-        riskStringIdMap.put(Risk.LOW, new Pair<Integer, Integer>(R.string.lowRisk, R.color.lowRisk));
-        riskStringIdMap.put(Risk.MODERATE, new Pair<Integer, Integer>(R.string.moderateRisk, R.color.moderateRisk));
-        riskStringIdMap.put(Risk.HIGH, new Pair<Integer, Integer>(R.string.highRisk, R.color.highRisk));
-        riskStringIdMap.put(Risk.VERY_HIGH, new Pair<Integer, Integer>(R.string.veryHighRisk, R.color.veryHighRisk));
-        riskStringIdMap.put(Risk.EXTREME, new Pair<Integer, Integer>(R.string.extremeRisk, R.color.extremeRisk));
-    }
 }

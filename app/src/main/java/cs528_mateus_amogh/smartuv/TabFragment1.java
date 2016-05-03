@@ -136,7 +136,7 @@ public class TabFragment1 extends Fragment{
         int risk = HealthInfo.getRisk(mUvHourUpdate.getUvIndex());
 
         //Set risk textView
-        mRiskTextView.setText(HealthInfo.getRiskStrId(risk));
+        mRiskTextView.setText(getString(HealthInfo.getRiskResource(risk).nameId));
         mRiskTextView.setTextColor(getResources().getColor(HealthInfo.getRiskResource(risk).colorId));
         mDateTextView.setText(new DateTime(Calendar.getInstance()).toShortString());
         String[] msgs = getResources().getStringArray(HealthInfo.getRiskResource(risk).msgId);

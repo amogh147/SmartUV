@@ -171,7 +171,7 @@ public class TabFragment2 extends Fragment {
                 timeView.setText(update.getDateTime().getHourString());
                 uvView.setText(String.valueOf(update.getUvIndex()));
                 int risk = HealthInfo.getRisk(dayUpdate.getUVHourUpdateList().get(i).getUvIndex());
-                uvView.setTextColor(getResources().getColor(HealthInfo.getRiskColorId(risk)));
+                uvView.setTextColor(getResources().getColor(HealthInfo.getRiskResource(risk).colorId));
 
                 exposureView.setText(DateTime.secondsToString(update.getExposureTime()));
 

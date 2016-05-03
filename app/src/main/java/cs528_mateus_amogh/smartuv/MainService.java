@@ -193,8 +193,8 @@ public class MainService extends Service{
                     Log.v(TAG, "New Day");
                     mUvDayUpdate = newUvDayUpdate;
                     mDatabase.saveUVDayUpdate(mUvDayUpdate);
-                }else
-                    mUvDayUpdate.update(newUvDayUpdate.getUVHourUpdateList());
+                }//else
+                    //mUvDayUpdate.update(newUvDayUpdate.getUVHourUpdateList());
 
                 notifySunExposureUpdate();
 
@@ -202,8 +202,8 @@ public class MainService extends Service{
                 if (mUvDayUpdate.getUVHourUpdate(Calendar.getInstance()).getUvIndex() == 0) {
                     Log.v(TAG, "current UVIndex is zero, lets stop");
                     //FIXME: Uncomment these 2 lines for the final version
-                    //alarmStop = true;
-                    //stopSelf();
+                    alarmStop = true;
+                    stopSelf();
                 }
 
             }

@@ -23,6 +23,14 @@
     <string name="notificationTitle">Smart UV</string>
     <string name="notificationSubtitle"></string>
 
+    <string name="who_button">World Health Organization(WHO)</string>
+    <string name="epa_button">US Environmental Protection Agency(EPA)</string>
+
+    <string name="whoUrl">http://www.who.int/uv/en/</string>
+    <string name="epaUrl">https://www.epa.gov/sunsafety</string>
+
+    <string name="info_msg">Click on the following buttons to know more about the UV Index and its risks.</string>
+
     <string name="indoor">Indoor</string>
     <string name="outdoor">Outdoor</string>
 

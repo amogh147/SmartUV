@@ -14,7 +14,7 @@ import java.io.BufferedReader;
 import java.net.MalformedURLException;
 
 /**
- * Created by cfsuman on 31/05/2015.
+ * Helper class to handle the EPA api online request (https://www.epa.gov/enviro/web-services)
  */
 public class HTTPDataHandler {
 
