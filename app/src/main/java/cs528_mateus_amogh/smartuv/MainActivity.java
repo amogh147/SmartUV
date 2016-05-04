@@ -1,7 +1,6 @@
 package cs528_mateus_amogh.smartuv;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Location;
@@ -16,16 +15,22 @@ import com.google.android.gms.location.LocationListener;
 
 import cs528_mateus_amogh.smartuv.SensingModules.CityLocationModule;
 
+/*
+    Contain the main interface fragments. Perform some general task: request UV Index and City Name
+ */
 public class MainActivity extends AppCompatActivity {
 
     private final String TAG = "MAIN_ACT";
     private FragmentTabHost mTabHost;
 
+    //Get the city location zipcode and name
     private CityLocationModule mCityLocationModule;
     private LocationListener mCityLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
+            //Extract the address
             Address address = CityLocationModule.locationToAddress(getApplicationContext(),location);
+            //UV Index update based on the extracted zipcode
             UVIndexParser.requestUvUpdate(getApplicationContext(),address.getPostalCode());
             Log.v(TAG, "Received City Update");
         }
@@ -35,16 +40,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Just to show the icon in the action bar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(R.drawable.icon);
         actionBar.setTitle(R.string.app_name);
         actionBar.show();
 
+        //Initialize CityLocationModule
         mCityLocationModule = new CityLocationModule(this,mCityLocationListener);
+
         //Initialize UI components
         setContentView(R.layout.activity_main);
-        checkPermissions();
-        initTabHost();
+        checkPermissions();//for now it just request for location permissions
+        initTabHost();//Initialize tabs
     }
 
 
@@ -80,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Only requests location updates for now
     private void checkPermissions(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -96,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         //    if(grantResults[i] != PackageManager.PERMISSION_GRANTED)
         //        return;
         //}
-        recreate();
+        recreate();//restart the app in case the user grant the permissions
     }
 
 }

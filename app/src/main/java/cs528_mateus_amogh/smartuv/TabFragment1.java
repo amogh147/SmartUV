@@ -39,12 +39,6 @@ public class TabFragment1 extends Fragment{
 
     //Views
     private ImageView mUvIndexImageView;
-    private ImageView mAlertView;
-    private ImageView mHatView;
-    private ImageView mShirtView;
-    private ImageView mSunscreenView;
-    private ImageView mSunglassView;
-    private ImageView mHouseView;
 
     private TextView mCityTextView;
     private TextView mDateTextView;
@@ -54,7 +48,7 @@ public class TabFragment1 extends Fragment{
     //City-State (e.g. Worcester-MA)
     private String mLocalityName = null;
 
-    //Store the last UvHourUpdate (FIXME: I think we can keep the UVDayUpdate
+    //Store the last UvHourUpdate (FIXME: I think we can keep the UVDayUpdate)
     UVHourUpdate mUvHourUpdate=null;
 
     //Receive the UVIndex Update from UVIndexParser
@@ -81,18 +75,6 @@ public class TabFragment1 extends Fragment{
         Log.v(TAG, "onCreate");
     }
 
-    @Override //TODO: for now it has no effect
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if(mUvHourUpdate!=null) {
-            outState.putInt(UV_INDEX, mUvHourUpdate.getUvIndex());
-            outState.putString(DATE_TIME, mUvHourUpdate.getDateTime().toString());
-        }
-        if(mLocalityName!=null) {
-            outState.putString(LOCALITY_NAME,mLocalityName);
-        }
-    }
-
     private View mView;
 
     @Override
@@ -110,17 +92,17 @@ public class TabFragment1 extends Fragment{
         mDateTextView = (TextView) mView.findViewById(R.id.dateTextView);
         mMsgTextView = (TextView) mView.findViewById(R.id.msgTextView);
 
+        updateAddress();//update the view with city and state names
 
 
-        updateAddress();
         if(UVIndexParser.getLastUvDayUpdate()!=null) {
-            updateUvUpdate(UVIndexParser.getLastUvDayUpdate());
-        }else{
-            if(CityLocationModule.getLastAddress()!=null)
+            updateUvUpdate(UVIndexParser.getLastUvDayUpdate());//Get an already requested update
+        }else{//If there is no already available UVDayUpdate, request a new one
+            if(CityLocationModule.getLastAddress()!=null)//check for the address
                 UVIndexParser.requestUvUpdate(getActivity(),CityLocationModule.getLastAddress().getPostalCode());
         }
 
-//        }
+        //register the BroadcastReceiver to receive UVDayUpdates
         LocalBroadcastManager.getInstance(getActivity()).
                 registerReceiver(mUVIndexReceiver, new IntentFilter(UVIndexParser.UV_UPDATE));
         return mView;
