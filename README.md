@@ -2,7 +2,7 @@
 
 Ubiquitous application designed to track the user's sun exposure based on the time the person is outdoor.
 
-## Functioning Features
+## Functioning Features (US only)
 
 ### 1st tab
 
@@ -37,6 +37,10 @@ The code still has some bugs that may crash the app. 2 of them are:
 * Image rendering problem (something related to memory allocation). The images are not loaded correctly. This is a minor error that does not happens all the time and may take some time to fix, so we didn't pay attention on it;
 * Problems in requesting the UV Index update (it seems internet communication problem). I think we should deal with exceptions.
 
+## TODO
+
+* Future work is described in report.pdf
+* Many parts need to be redesigned in order to make it easily extendable and portable.
 
 ## Motivation
 
